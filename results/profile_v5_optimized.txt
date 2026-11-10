@@ -1,0 +1,23 @@
+Профиль: V5 + смешанная точность FP16, кадров: 128
+
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                                   Name    Self CPU %      Self CPU   CPU total %     CPU total  CPU time avg     Self CUDA   Self CUDA %    CUDA total  CUDA time avg    # of Calls  
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                aten::cudnn_convolution         2.66%       3.827ms         3.44%       4.949ms      46.685us      59.201ms        40.03%      59.201ms     558.502us           106  
+                                 aten::cudnn_batch_norm         1.62%       2.327ms         3.87%       5.556ms      52.419us      41.572ms        28.11%      41.572ms     392.191us           106  
+void cudnn::bn_fw_inf_1C11_kernel_NHWC<__half, float...         0.00%       0.000us         0.00%       0.000us       0.000us      41.572ms        28.11%      41.572ms     392.191us           106  
+                                       aten::clamp_min_         0.68%     973.725us         1.20%       1.717ms      17.518us      19.790ms        13.38%      19.790ms     201.942us            98  
+void at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us      19.790ms        13.38%      19.790ms     201.942us            98  
+                                             aten::add_         0.25%     359.259us         0.42%     597.204us      18.663us      16.805ms        11.36%      16.805ms     525.155us            32  
+void at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us      16.805ms        11.36%      16.805ms     525.155us            32  
+         turing_fp16_s1688gemm_fp16_128x128_ldg8_f2f_tn         0.00%       0.000us         0.00%       0.000us       0.000us      10.732ms         7.26%      10.732ms     315.639us            34  
+turing_fp16_s1688gemm_fp16_128x128_ldg8_f2f_stages_3...         0.00%       0.000us         0.00%       0.000us       0.000us       9.954ms         6.73%       9.954ms     622.111us            16  
+sm75_xmma_fprop_implicit_gemm_f16f16_f16f32_f32_nhwc...         0.00%       0.000us         0.00%       0.000us       0.000us       8.677ms         5.87%       8.677ms     619.812us            14  
+sm75_xmma_fprop_implicit_gemm_f16f16_f16f32_f32_nhwc...         0.00%       0.000us         0.00%       0.000us       0.000us       6.106ms         4.13%       6.106ms     610.581us            10  
+sm75_xmma_fprop_implicit_gemm_f16f16_f16f32_f32_nhwc...         0.00%       0.000us         0.00%       0.000us       0.000us       5.543ms         3.75%       5.543ms     923.806us             6  
+                          aten::max_pool2d_with_indices         0.03%      38.033us         0.04%      55.380us      27.690us       5.243ms         3.54%       5.243ms       2.621ms             2  
+void at::native::(anonymous namespace)::max_pool_for...         0.00%       0.000us         0.00%       0.000us       0.000us       5.243ms         3.54%       5.243ms       2.621ms             2  
+sm75_xmma_fprop_image_first_layer_f16f16_f32_f16_nhw...         0.00%       0.000us         0.00%       0.000us       0.000us       4.075ms         2.76%       4.075ms       2.038ms             2  
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+Self CPU time total: 143.664ms
+Self CUDA time total: 147.899ms

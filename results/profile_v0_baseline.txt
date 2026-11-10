@@ -1,0 +1,23 @@
+Профиль: V0 Исходная версия (batch=1, FP32, CPU-предобработка), кадров: 128
+
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                                   Name    Self CPU %      Self CPU   CPU total %     CPU total  CPU time avg     Self CUDA   Self CUDA %    CUDA total  CUDA time avg    # of Calls  
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                aten::cudnn_convolution        18.59%     246.009ms        24.92%     329.624ms      48.588us     531.103ms        82.52%     531.103ms      78.288us          6784  
+void implicit_convolve_sgemm<float, float, int, 128,...         0.00%       0.000us         0.00%       0.000us       0.000us     249.830ms        38.82%     249.830ms     162.650us          1536  
+void implicit_convolve_sgemm<float, float, int, 1024...         0.00%       0.000us         0.00%       0.000us       0.000us     109.960ms        17.08%     109.960ms     143.177us           768  
+                                  volta_sgemm_128x64_nn         0.00%       0.000us         0.00%       0.000us       0.000us      65.256ms        10.14%      65.256ms      28.323us          2304  
+                                 aten::cudnn_batch_norm        15.08%     199.544ms        31.91%     422.185ms      62.233us      53.738ms         8.35%      53.741ms       7.922us          6784  
+void cudnn::bn_fw_inf_1C11_kernel_NCHW<float, float,...         0.00%       0.000us         0.00%       0.000us       0.000us      53.738ms         8.35%      53.738ms       7.921us          6784  
+                                             aten::add_         3.22%      42.546ms         4.56%      60.350ms      29.468us      24.357ms         3.78%      24.357ms      11.893us          2048  
+void at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us      24.357ms         3.78%      24.357ms      11.893us          2048  
+void implicit_convolve_sgemm<float, float, int, 128,...         0.00%       0.000us         0.00%       0.000us       0.000us      23.563ms         3.66%      23.563ms      92.042us           256  
+                                 volta_sgemm_128x128_nn         0.00%       0.000us         0.00%       0.000us       0.000us      19.232ms         2.99%      19.232ms      30.050us           640  
+                                   volta_sgemm_64x64_nn         0.00%       0.000us         0.00%       0.000us       0.000us      17.471ms         2.71%      17.471ms      45.497us           384  
+                                       aten::clamp_min_         5.14%      67.989ms         9.45%     125.052ms      19.938us      17.396ms         2.70%      17.398ms       2.774us          6272  
+void at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us      17.396ms         2.70%      17.396ms       2.774us          6272  
+void precomputed_convolve_sgemm<float, int, 1024, 5,...         0.00%       0.000us         0.00%       0.000us       0.000us      14.411ms         2.24%      14.411ms     112.584us           128  
+                         volta_sgemm_64x32_sliced1x4_nn         0.00%       0.000us         0.00%       0.000us       0.000us      13.978ms         2.17%      13.978ms      36.401us           384  
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+Self CPU time total: 1.323s
+Self CUDA time total: 643.617ms
