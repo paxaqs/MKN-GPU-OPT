@@ -1,0 +1,25 @@
+name: Проверка кода
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  smoke-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Установка зависимостей (CPU-версия PyTorch)
+        run: |
+          pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+          pip install matplotlib
+      - name: Короткий прогон всех вариантов на CPU
+        run: python -m src.run_all --quick --device cpu --out ci_results
+      - name: Сохранить результаты прогона
+        uses: actions/upload-artifact@v4
+        with:
+          name: ci-results
+          path: ci_results/
